@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div id="card" class="card m-2 w-100" *ngFor="let note of notes">
+      <div class="row">
+		 <div class="left-side-col col">
+        <app-leftmenu></app-leftmenu>
+      </div>
+        <div class="col-8">
+          <div class="card-body">
+            <h5 class="card-title"><a routerLink="['/note',{{note.id}}]" class="text-decoration-none">{{ note.title }}</a></h5>
+            <p class="card-text">{{ note.text }}</p>
+            <button [routerLink]="['/note', note.id]">Edit</button>
+            <p class="card-text"><small class="text-muted">Modified: {{ note.modifyTime }}</small></p>
+          </div>
+        </div>
+
+        <div class="col-4 d-flex">
+          <img src="{{ note.image }}" class="card-img align-items-end" alt="{{ note.title }}">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

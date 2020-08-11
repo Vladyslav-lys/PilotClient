@@ -1,0 +1,146 @@
+<div class="profile">
+	<div class="">
+        <app-leftmenu></app-leftmenu>
+	</div>
+	<div class="col-profile">
+	﻿<h3 class="h3">Profile</h3>
+	
+	<form [formGroup]="profileForm">
+		<div class="row-another">
+			<div>
+				<div class="photo">
+					<div class="image-block-profile">
+						<img class="image-profile" src="{{ user.account.photo }}"/> <br>
+					</div>
+					<div class="file-choosing">
+						<input type="file" id="file" (change)="onFileChanged($event)">
+						<label for="file" class="use-elem-file-choosing btn">Choose a file</label>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<div class="input-group">
+					<div class="error-area">
+						<div class="error-text" *ngIf="(submitted || this.profileForm.controls.lastName.touched) && this.profileForm.controls.lastName.errors">Last name is required</div>
+					</div>
+					<div [class.error-block]="(submitted || this.profileForm.controls.lastName.touched) && this.profileForm.controls.lastName.errors" class="use-elem use-elem-input">
+						<input type="text" class="form-control" placeholder="Last name" formControlName="lastName" value="{{user.account.lastName}}">
+					</div>
+				</div>
+				<div class="input-group">
+					<div class="error-area">
+						<div class="error-text" *ngIf="(submitted || this.profileForm.controls.firstName.touched) && this.profileForm.controls.firstName.errors">First name is required</div>
+					</div>
+					<div [class.error-block]="(submitted || this.profileForm.controls.firstName.touched) && this.profileForm.controls.firstName.errors" class="use-elem use-elem-input">
+						<input type="text" class="form-control" placeholder="First name" formControlName="firstName" value="{{user.account.firstName}}">
+					</div>
+				</div>
+				<div class="input-group">
+					<div class="error-area">
+						<div class="error-text" *ngIf="(submitted || this.profileForm.controls.nickName.touched) && this.profileForm.controls.nickName.errors">Nick name is required</div>
+					</div>
+					<div [class.error-block]="(submitted || this.profileForm.controls.nickName.touched) && this.profileForm.controls.nickName.errors" class="use-elem use-elem-input">
+						<input type="text" class="form-control" placeholder="Nick name" formControlName="nickName" value="{{user.account.nickname}}">
+					</div>
+				</div>
+				<div class="input-group">
+					<div class="error-area">
+						<div class="error-text" *ngIf="(submitted || this.profileForm.controls.email.touched) && this.profileForm.controls.email.errors">E-mail is required</div>
+					</div>
+					<div [class.error-block]="(submitted || this.profileForm.controls.email.touched) && this.profileForm.controls.email.errors" class="use-elem use-elem-input">
+						<input type="text" class="form-control" placeholder="E-mail" formControlName="email" value="{{user.account.email}}">
+					</div>
+				</div>
+				<div class="input-group">
+					<div class="error-area">
+						<div class="error-text" *ngIf="(submitted || this.profileForm.controls.birthday.touched) && this.profileForm.controls.birthday.errors">Birthday is required</div>
+					</div>
+					<div [class.error-block]="(submitted || this.profileForm.controls.birthday.touched) && this.profileForm.controls.birthday.errors" class="use-elem use-elem-input">
+						<input type="date" class="form-control" formControlName="birthday" [valueAsDate]="user.account.birthday" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="input-group">
+			<div [class.btn]="enableBtn()" class="use-elem use-elem-button">
+				<button type="submit" [class.btn]="enableBtn()"  [disabled]="loading" class="btn-primary" (click)="EditProfile()">Update</button>
+			</div>
+		</div>
+	</form>
+	</div>
+	<div class="another-side">
+	</div>
+</div>
+
+<!--<div class="container d-flex justify-content-center">
+
+  <div class="card col-6 mt-5">
+    <div class="container my-5">
+
+        <div class="row mb-3">
+          <div class="col-6">
+            <img id="ItemPreview" class="img-thumbnail" src="{{ user.account.photo }}"/> <br>
+          </div>
+        </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Photo</span>
+        </div>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile01" (change)="onFileChanged($event)">
+          <label class="custom-file-label" id="file" for="inputGroupFile01">{{ fileName }}</label>
+        </div>
+      </div>
+	  
+      <form [formGroup]="profileForm">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Last name</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Ivanov" formControlName="lastName" value="{{user.account.lastName}}" required>
+          <div class="invalid-feedback">Please enter your last name. This field is required</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">First name</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Ivan" formControlName="firstName" value="{{user.account.firstName}}" required>
+          <div class="invalid-feedback">Please enter your first name. This field is required</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">Nickname</span>
+          </div>
+          <input type="text" class="form-control" placeholder="Ivan_001" formControlName="nickName" value="{{user.account.nickname}}" required>
+          <div class="invalid-feedback">Please enter your nickname. This field is required</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon4">Email</span>
+          </div>
+          <input type="text" class="form-control" placeholder="ivanov@gmail.com" formControlName="email"
+                 value="{{user.account.email}}" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" required>
+          <div class="invalid-feedback">Please enter your email. This field is required</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon5">Birthday</span>
+          </div>
+          <input type="date" class="form-control" [valueAsDate]="user.account.birthday" formControlName="birthday" />
+          <div class="invalid-feedback">Please enter your birth date. This field is required</div>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-secondary" (click)="EditProfile()">Send Form</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>-->

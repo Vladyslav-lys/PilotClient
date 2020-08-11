@@ -1,0 +1,60 @@
+.note {
+	display:flex;
+	flex-direction:row;
+	margin:0 auto;
+	justify-content:center;
+	flex-wrap:wrap;
+	font-family:Cambria;
+}
+
+.col-note {
+	width:400px;
+}
+
+.image-note {
+	width: 390px;
+	height:auto;
+	border:1px solid rgb(211, 211, 211);
+	padding:5px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.image-block-note {
+	
+}
+
+.another-side {
+	width:100px;
+}
+
+/*#card {
+  width: 450px;
+  position: relative;
+  left: 325px;
+}
+
+img {
+  width: 450px;
+}
+
+p {
+  font-family: "Bell MT";
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+#titleField {
+  margin: 5px 0px 5px 0px;
+}
+
+#surnameField {
+  text-align: center;
+}
+
+#mainText {
+  font-family: "Bell MT";
+  font-size: 22px;
+  margin: 5px 0 5px 0;
+}*/

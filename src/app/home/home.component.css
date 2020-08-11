@@ -1,0 +1,15 @@
+#card{
+  min-height: 250px;
+  max-height: 500px;
+}
+
+a {
+  font-family: typography_machine;
+  font-size: 50px;
+  color: lightslategray;
+}
+
+p {
+  font-family: totry1;
+  font-size: 40px;
+}

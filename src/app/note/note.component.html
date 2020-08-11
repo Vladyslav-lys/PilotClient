@@ -1,0 +1,70 @@
+ <div class="note">
+	 <div class="">
+	 	<app-leftmenu></app-leftmenu>
+	 </div>
+	<div class="col-note">
+	<form [formGroup]="noteForm">
+		<div class="row-another">
+			<div class="form-group">
+				<h3 class="h3">{{currentNote.account.lastName + ' ' + currentNote.account.firstName}}</h3>
+				
+				<div class="use-elem use-elem-input">
+					<input type="text" formControlName="title" value="{{ currentNote.title }}" placeholder="Title">
+				</div>
+				
+				<div class="use-elem use-elem-textarea">
+					<textarea formControlName="text" rows="3" cols="35" placeholder="Text">{{ currentNote.text }}</textarea>
+				</div>
+			</div>
+			
+			<div>
+				<div class="photo">
+					<div class="image-block-note">
+						<img class="image-note" src="{{ currentNote.image }}"/> <br>
+					</div>
+					<div class="file-choosing">
+						<input type="file" id="file" (change)="onFileChanged($event)">
+						<label for="file" class="use-elem-file-choosing btn">Choose a file</label>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<div class="note-date-changing">
+					<p type="text">Publish time: {{ currentNote.publishTime | date : "dd.MM.y h:mm" }} </p>
+					<p type="text">Modify time: {{ currentNote.modifyTime | date : "dd.MM.y h:mm" }} </p>
+				</div>
+			</div>
+		</div>
+		<div class="input-group">
+			<div class="btn use-elem use-elem-button">
+				<button type="submit" class="btn-primary btn" (click)="EditNote()">Update</button>
+			</div>
+		</div>
+	</form>
+	</div>
+	<div class="another-side">
+	</div>
+</div>
+
+<!--<div class="container">
+  <div class="row">
+    <form [formGroup]="noteForm">
+    <div class="card m-2" id="card" class="form-group">
+    <h3 id="surnameField" class="card-header">{{currentNote.account.lastName + ' ' + currentNote.account.firstName}}</h3>
+
+    <strong>Title: </strong><input type="text" id="titleField" formControlName="title" value="{{ currentNote.title }}">
+    <img src="{{ currentNote.image }}">
+    <div class="form-group shadow-textarea">
+      <textarea id="mainText" class="form-control z-depth-1" formControlName="text" rows="3" cols="35">{{ currentNote.text }}</textarea>
+    </div>
+
+      <p type="text">Publish time: <strong> {{ currentNote.publishTime }} </strong> </p>
+      <p type="text">Modify time: <strong> {{ currentNote.modifyTime }} </strong> </p>
+
+    <br/>
+    <input type="button" value="Edit" (click)="EditNote()"/>
+    </div>
+    </form>
+  </div>
+</div>-->
